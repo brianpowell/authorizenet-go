@@ -33,8 +33,10 @@ func (r MessagesResponse) ErrorMessage() string {
 }
 
 func (r TransactionResponse) Approved() bool {
-	if r.Response.ResponseCode == "1" || r.Response.ResponseCode == "4" {
-		return true
+	for _, m := range r.Messages.Message {
+		if m.Code == "1" || m.Code == "4" {
+			return true
+		}
 	}
 	return false
 }
