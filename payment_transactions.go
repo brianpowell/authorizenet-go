@@ -192,14 +192,14 @@ type CreateTransactionRequest struct {
 }
 
 type Payment struct {
-	CreditCard CreditCard `json:"creditCard,omitempty"`
+	CreditCard CreditCard  `json:"creditCard,omitempty"`
+	OpaqueData *OpaqueData `json:"opaqueData,omitempty"`
 }
 
 type CreditCard struct {
-	CardNumber     string      `json:"cardNumber,omitempty"`
-	ExpirationDate string      `json:"expirationDate,omitempty"`
-	CardCode       string      `json:"cardCode,omitempty"`
-	OpaqueData     *OpaqueData `json:"opaqueData,omitempty"`
+	CardNumber     string `json:"cardNumber,omitempty"`
+	ExpirationDate string `json:"expirationDate,omitempty"`
+	CardCode       string `json:"cardCode,omitempty"`
 }
 
 type OpaqueData struct {
