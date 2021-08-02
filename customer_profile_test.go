@@ -43,7 +43,7 @@ func TestCreateCustomerProfile(t *testing.T) {
 		PaymentProfiles: &PaymentProfiles{
 			CustomerType: "individual",
 			Payment: Payment{
-				CreditCard: CreditCard{
+				CreditCard: &CreditCard{
 					CardNumber:     "4007000000027",
 					ExpirationDate: "10/26",
 					//CardCode: "384",
@@ -118,7 +118,7 @@ func TestCreateCustomerPaymentProfile(t *testing.T) {
 				PhoneNumber: "8885555555",
 			},
 			Payment: &Payment{
-				CreditCard: CreditCard{
+				CreditCard: &CreditCard{
 					CardNumber:     "5424000000000015",
 					ExpirationDate: "04/22",
 				},
@@ -203,7 +203,7 @@ func TestUpdateCustomerPaymentProfile(t *testing.T) {
 		Email:             "info@" + RandomString(8) + ".com",
 		PaymentProfiles: &PaymentProfiles{
 			Payment: Payment{
-				CreditCard: CreditCard{
+				CreditCard: &CreditCard{
 					CardNumber:     "4007000000027",
 					ExpirationDate: "01/26",
 				},
