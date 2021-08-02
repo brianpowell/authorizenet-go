@@ -9,11 +9,9 @@ func (tranx NewTransaction) Charge(c Client) (*TransactionResponse, error) {
 	new = TransactionRequest{
 		TransactionType: "authCaptureTransaction",
 		Amount:          tranx.Amount,
-		Payment: &Payment{
-			CreditCard: tranx.CreditCard,
-		},
-		BillTo:   tranx.BillTo,
-		AuthCode: tranx.AuthCode,
+		Payment:         &tranx.Payment,
+		BillTo:          tranx.BillTo,
+		AuthCode:        tranx.AuthCode,
 	}
 	res, err := c.SendTransactionRequest(new)
 	return res, err
@@ -40,9 +38,7 @@ func (tranx NewTransaction) AuthOnly(c Client) (*TransactionResponse, error) {
 	new = TransactionRequest{
 		TransactionType: "authOnlyTransaction",
 		Amount:          tranx.Amount,
-		Payment: &Payment{
-			CreditCard: tranx.CreditCard,
-		},
+		Payment:         &tranx.Payment,
 	}
 	res, err := c.SendTransactionRequest(new)
 	return res, err
@@ -54,9 +50,7 @@ func (tranx NewTransaction) Refund(c Client) (*TransactionResponse, error) {
 		TransactionType: "refundTransaction",
 		Amount:          tranx.Amount,
 		RefTransId:      tranx.RefTransId,
-		Payment: &Payment{
-			CreditCard: tranx.CreditCard,
-		},
+		Payment:         &tranx.Payment,
 	}
 	res, err := c.SendTransactionRequest(new)
 	return res, err
@@ -131,12 +125,12 @@ func (c Client) SendTransactionRequest(input TransactionRequest) (*TransactionRe
 }
 
 type NewTransaction struct {
-	Amount     string     `json:"amount,omitempty"`
-	InvoiceId  string     `json:"invoiceId,omitempty"`
-	RefTransId string     `json:"refTransId,omitempty"`
-	CreditCard CreditCard `json:"payment,omitempty"`
-	AuthCode   string     `json:"authCode,omitempty"`
-	BillTo     *BillTo    `json:",omitempty"`
+	Amount     string  `json:"amount,omitempty"`
+	InvoiceId  string  `json:"invoiceId,omitempty"`
+	RefTransId string  `json:"refTransId,omitempty"`
+	Payment    Payment `json:"payment,omitempty"`
+	AuthCode   string  `json:"authCode,omitempty"`
+	BillTo     *BillTo `json:",omitempty"`
 }
 
 type PreviousTransaction struct {
