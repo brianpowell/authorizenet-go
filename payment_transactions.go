@@ -159,7 +159,6 @@ type TranxResponse struct {
 		ErrorCode string `json:"errorCode"`
 		ErrorText string `json:"errorText"`
 	} `json:"errors"`
-	TransactionMessages
 	TransHashSha2 string `json:"transHashSha2"`
 	Message       TransactionMessages
 }
