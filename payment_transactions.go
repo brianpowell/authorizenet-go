@@ -202,9 +202,15 @@ type Payment struct {
 }
 
 type CreditCard struct {
-	CardNumber     string `json:"cardNumber,omitempty"`
-	ExpirationDate string `json:"expirationDate,omitempty"`
-	CardCode       string `json:"cardCode,omitempty"`
+	CardNumber     string      `json:"cardNumber,omitempty"`
+	ExpirationDate string      `json:"expirationDate,omitempty"`
+	CardCode       string      `json:"cardCode,omitempty"`
+	OpaqueData     *OpaqueData `json:"opaqueData,omitempty"`
+}
+
+type OpaqueData struct {
+	DataDescriptor string `json:"dataDescriptor,omitempty"`
+	DataValue      string `json:"dataValue,omitempty"`
 }
 
 type LineItems struct {
