@@ -14,14 +14,14 @@ type Client struct {
 	APIName   string
 	APIKey    string
 	Endpoint  string
-	Mode	  string
+	Mode      string
 	Client    *http.Client
 	Live      bool
 	Connected bool
 	Verbose   bool
 }
 
-func New(apiName string, apiKey string, testMode bool) *Client {
+func New(apiName string, apiKey string, testMode bool) Client {
 	// Default to production endpoint / livemode
 	endpoint := "https://api.authorize.net/xml/v1/request.api"
 	mode := "liveMode"
@@ -32,11 +32,11 @@ func New(apiName string, apiKey string, testMode bool) *Client {
 		mode = "testMode"
 	}
 
-	return &Client{
+	return Client{
 		APIKey:   apiKey,
 		APIName:  apiName,
 		Endpoint: endpoint,
-		Mode: mode,
+		Mode:     mode,
 		Client:   &http.Client{Timeout: defaultHTTPTimeout},
 	}
 }
